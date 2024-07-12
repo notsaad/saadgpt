@@ -11,11 +11,14 @@
 
 html, body {
   height: 100%;
+  margin: 0;
+  padding: 0;
   overflow: hidden;
 }
 
 body {
-  background-color: var(--background-color);
+	margin: 0;
+  background-color: red;
   color: red;
   font-family: Arial, sans-serif;
 }

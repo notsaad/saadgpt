@@ -14,10 +14,6 @@
       { date: 'April 2019', items: ['Anxius Mental Health Game'], link: 'https://github.com/notsaad/anxius'},
     ];
   
-  
-    onMount(() => {
-      // Any initialization code can go here
-    });
   </script>
   
   <div class="layout">
