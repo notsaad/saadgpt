@@ -4,42 +4,43 @@
 
   const { input, handleSubmit: originalHandleSubmit, messages } = useChat();
   let showSuggestions = true;
-  let logo = ''; // You'll need to replace this with your actual logo SVG or image
-  let suggestions = [
-    { icon: '📈', text: 'What experience does Saad have?' },
-    { icon: '📚', text: 'What is Saad studying?' },
-    { icon: '📫', text: 'Where can I contact Saad?' },
-    { icon: '🎮', text: "Where can I see Saad's projects?" }
-  ];
 
-  const handleSubmit = () => {
+let suggestions = [
+  { icon: '📈', text: 'What experience does Saad have?', value: 'What experience does Saad have?' },
+  { icon: '📚', text: 'What is Saad studying?', value: 'What is Saad studying?' },
+  { icon: '📫', text: 'Where can I contact Saad?', value: 'Where can I contact Saad?' },
+  { icon: '🎮', text: "Where can I see Saad's projects?", value: "Where can I see Saad's projects?" }
+];
+
+const handleSubmit = () => {
+  if ($input.trim() !== '') {
     showSuggestions = false;
     originalHandleSubmit();
-  };
+  }
+};
+
+  const handleSuggestionClick = (suggestionValue) => {
+  $input = suggestionValue;
+  handleSubmit();
+	};
+
 </script>
 
 <div class="page-content">
-  <div class="logo-container">
-    {#if logo}
-      <img src={logo} alt="SaadGPT Logo" class="logo" />
-    {/if}
-  </div>
-
-
 {#if showSuggestions}
   <div class="disappear">
     <div>
         <h3>try asking SaadGPT...</h3>
     </div>
 
-      <div class="suggestions">
-        {#each suggestions as suggestion}
-          <button class="suggestion-button">
-            <span class="suggestion-icon">{suggestion.icon}</span>
-            <span class="suggestion-text">{suggestion.text}</span>
-          </button>
-        {/each}
-      </div>
+	<div class="suggestions">
+	{#each suggestions as suggestion}
+		<button class="suggestion-button" on:click={() => handleSuggestionClick(suggestion.value)}>
+		<span class="suggestion-icon">{suggestion.icon}</span>
+		<span class="suggestion-text">{suggestion.text}</span>
+		</button>
+	{/each}
+	</div>
   </div>
 {/if}
 
@@ -74,21 +75,16 @@
 
 <style>
 
-  /* @font-face{
-    font-family: 'SohneLight';
-    src: url(../../fonts/Sohne-Light.otf)
-  }
-
-  @font-face{
-    font-family: 'SohneBold';
-    src: url(../../fonts/Sohne-Bold.otf)
-  } */
  .suggestions {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
     max-width: 600px;
     width: 100%;
+  }
+  h3{
+	font-family: 'Roboto', sans-serif;
+	font-weight: 900;
   }
 
   .suggestion-button {
@@ -100,6 +96,11 @@
     border-radius: 8px;
     color: #fff;
     transition: background-color 0.3s ease;
+	cursor: pointer;
+  }
+
+  .suggestion-button:hover{
+	background-color: #50515f;
   }
 
   .suggestion-icon {
@@ -113,8 +114,8 @@
 
   .disappear {
     position: relative;
-    top: 70vh; /* Adjust this value as needed */
-    margin-bottom: 70vh; /* This helps maintain spacing below */
+    top: 70vh; 
+    margin-bottom: 70vh;
   }
 
   @media (max-width: 600px) {
@@ -131,23 +132,6 @@
     padding: 20px;
   }
 
-  .logo-container {
-    margin-bottom: 40px;
-  }
-
-  /* .logo, .logo-placeholder {
-    width: 60px;
-    height: 60px;
-  }
-
-  .logo-placeholder {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #40414F;
-    border-radius: 50%;
-  } */
-
 .messages-container {
   display: flex;
   flex-direction: column;
@@ -156,7 +140,7 @@
   margin: 0 auto;
   padding: 20px;
   overflow-y: auto;
-  height: calc(100vh - 150px); /* Adjust based on your layout */
+  height: calc(100vh - 150px);
 }
 
 .message-wrapper {
@@ -173,7 +157,8 @@
 }
 
 .message-bubble {
-  font-family: 'SohneLight';
+	font-family: 'Roboto', sans-serif;
+	font-weight: 400;
   max-width: 70%;
   padding: 10px 15px;
   border-radius: 20px;
@@ -194,13 +179,12 @@
   border-bottom-right-radius: 5px;
 }
 
-/* Ensure the input area doesn't overlap with messages */
 main {
   font-family: 'SohneLight';
   display: flex;
   flex-direction: column;
   height: 100vh;
-  padding-bottom: 80px; /* Add this line, adjust value as needed */
+  padding-bottom: 80px; 
 }
 
 .input-area {
@@ -212,21 +196,19 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%; /* Change from 60% to 100% */
-  z-index: 10; /* Add this line */
+  width: 100%; 
+  z-index: 10; 
   pointer-events: none;
 }
 
-/* Define the input-wrapper to have a fixed maximum width and be centered */
 .input-wrapper {
   position: relative;
-  max-width: 700px; /* Keep this as is or adjust as needed */
-  width: 60%; /* Adjust this value to control the width of the input area */
+  max-width: 700px; 
+  width: 60%; 
   margin: 0 auto;
-  pointer-events: auto; /* Add this line */
+  pointer-events: auto; 
 }
 
-/* Define the input field to span the full width of the input-wrapper */
 input {
   width: 100%;
   padding: 10px 40px 10px 10px;
@@ -237,7 +219,6 @@ input {
   box-sizing: border-box;
 }
 
-/* Define the send button within the input-wrapper */
 .send-button {
   position: absolute;
   right: 10px;
@@ -250,6 +231,10 @@ input {
   color: #fff;
   cursor: pointer;
   text-align: center;
+}
+
+.send-button:hover{
+	color: #2F2F2F;
 }
 
 .send-button .icon {

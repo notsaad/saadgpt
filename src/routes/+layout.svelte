@@ -1,9 +1,10 @@
 <script>
-    import { onMount } from 'svelte';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/900.css';
   
     let sidebarItems = [
-      { icon: '', text: 'SaadGPT', link: '/'},
-      { icon: '', text: 'Read My Resume!', link: '/resume' }
+      { icon: '🧑‍💻', text: 'SaadGPT', link: '/'},
+      { icon: '📄', text: 'Read My Resume!', link: '/resume' }
     ];
   
     let historyItems = [
@@ -63,6 +64,7 @@
     font-family: 'SohneBold';
     src: url(../../static/fonts/Sohne-Bold.otf)
   } */
+
     
     .layout {
       font-family: 'SohneLight';
@@ -80,11 +82,13 @@
       display: flex;
       flex-direction: column;
       padding: 10px;
+	  font-family: 'Roboto', sans-serif;
     }
 
     .sidebar-item {
       text-align: center;
-      font-family: 'SohneBold';
+	  font-family: 'Roboto', sans-serif;
+	  font-weight: 900;
     }
   
     .sidebar-item, .history-item {
@@ -113,7 +117,8 @@
     }
   
     .upgrade-plan {
-      font-family: 'SohneBold';
+	  font-family: 'Roboto', sans-serif;
+	  font-weight: 900;
       margin-top: auto;
       padding: 10px;
     }

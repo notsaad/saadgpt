@@ -20,6 +20,7 @@
 	"dependencies": {
 		"@ai-sdk/openai": "^0.0.36",
 		"@ai-sdk/svelte": "^0.0.15",
+		"@fontsource/roboto": "^5.0.13",
 		"ai": "^3.2.22",
 		"dotenv": "^16.4.5",
 		"express": "^4.19.2",
