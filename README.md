@@ -1,4 +1,4 @@
-# SaadGPT
+# DEPRECATED - SaadGPT
 ### Personalized GPT3.5 API bot to help me look good!
 
 - made with sveltekit and typescript/javascript backend
